@@ -24,6 +24,8 @@ class VirtualFabricServer:
         for i, library in enumerate(libraries):
             output=self.connection.run("pip install "+library)
 
+
+
     def git_clone(self):
         #TODO
         pass
@@ -35,7 +37,11 @@ class VirtualFabricServer:
     def scp_move(self):
         #TODO
         pass
-    
+
+    def synchronize_folders(self,local_folder,remote_folder,direction="l->r"):
+        #TODO
+        pass
+        
     def manage_crontab(self):
         #TODO
         pass
@@ -47,3 +53,6 @@ class VirtualFabricServer:
 
 vfs=VirtualFabricServer(SERVER,USER,PASS)
 vfs.connect()
+
+
+
