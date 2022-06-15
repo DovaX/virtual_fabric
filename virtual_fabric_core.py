@@ -50,6 +50,17 @@ class VirtualFabricServer:
         #TODO
         pass
     
+    def move_file(self):
+        #TODO
+        pass
+    
+    def create_folder(self):
+        #TODO
+        pass
+    
+    
+    
+    
 
 vfs=VirtualFabricServer(SERVER,USER,PASS)
 vfs.connect()
