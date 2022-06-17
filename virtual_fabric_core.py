@@ -1,5 +1,5 @@
 import fabric
-
+import os
 
 
 SERVER="127.0.0.1"
@@ -13,6 +13,7 @@ class VirtualFabricServer:
         self.server=server
         self.username=username
         self.password=password
+        self.working_directory=None
         
     def connect(self):
         self.connection=fabric.Connection(self.server, port=22, user=self.username, connect_kwargs={'password': self.password})
@@ -24,8 +25,36 @@ class VirtualFabricServer:
         for i, library in enumerate(libraries):
             output=self.connection.run("pip install "+library)
 
-
-
+    def change_directory(self,directory):
+        self.working_directory=directory
+            
+    def run(self,command):        
+        with self.connection.cd(self.working_directory):        
+            output=self.connection.run(command)
+            print(output)
+            
+            
+    def read_file(self,file,directory=None):
+        if not directory is None:
+            self.working_directory=directory
+        
+        #Read file
+        output=self.connection.get(directory+"/"+file,"./temp_files/"+file)
+        os.system("C:/Programy/Notepad++/notepad++.exe ./temp_files/"+file)
+        #output=c.put("")
+        print(output)
+        
+            
+    def update_file(self,file,directory=None):
+        if not directory is None:
+            self.working_directory=directory
+        
+        #Read file
+        output=self.connection.put("./temp_files/"+file,directory+"/"+file)
+        #os.system("C:/Programy/Notepad++/notepad++.exe ./temp_files/"+file)
+        #output=c.put("")
+        print(output)
+        
     def git_clone(self):
         #TODO
         pass
