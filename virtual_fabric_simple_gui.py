@@ -23,6 +23,7 @@ def run_ls():
 def cd():
     directory=entry1.text.get()
     vfs.change_directory(directory)
+    label1.text.set("Current directory: "+str(vfs.working_directory))
 
 
 def run():
@@ -42,6 +43,18 @@ def read_crontab():
     #file=entry4.text.get()
     vfs.read_crontab()
 
+def update_crontab():
+    #file=entry4.text.get()
+    vfs.update_crontab()
+
+
+def new_cronjob():
+    #file=entry4.text.get()
+    vfs.new_cronjob()
+
+
+
+label1=dg.Label(gui1.window,"Current directory: ~", 0, 1)
 
 
 dg.Label(gui1.window,"Change directory", 1, 1)
@@ -69,6 +82,10 @@ dg.Button(gui1.window, "Update", update_file, 3, 4)
 
 
 dg.Button(gui1.window, "Read crontab", read_crontab, 4, 1)
+dg.Button(gui1.window, "Update crontab", update_crontab, 4, 2)
+
+
+dg.Button(gui1.window, "New cronjob", new_cronjob, 4, 3)
 
 
 
