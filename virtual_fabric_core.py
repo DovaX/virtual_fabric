@@ -13,7 +13,7 @@ class VirtualFabricServer:
         self.server=server
         self.username=username
         self.password=password
-        self.working_directory=None
+        self.working_directory="~"
         
     def connect(self):
         self.connection=fabric.Connection(self.server, port=22, user=self.username, connect_kwargs={'password': self.password})
@@ -54,6 +54,18 @@ class VirtualFabricServer:
         #os.system("C:/Programy/Notepad++/notepad++.exe ./temp_files/"+file)
         #output=c.put("")
         print(output)
+        
+    def read_crontab(self):
+        self.read_file("root","../var/spool/cron/crontabs")
+        
+    def update_crontab(self):
+        self.update_file("root","../var/spool/cron/crontabs")
+        
+    def new_cronjob(self):
+        with open("./temp_files/root","a+") as f:
+            f.write("1 * * * * /usr/bin/env python3 /var/www/slack_community_notifier/slack_community_notifier.py")
+        
+
         
     def git_clone(self):
         #TODO
