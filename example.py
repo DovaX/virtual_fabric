@@ -24,7 +24,7 @@ print(output)
 
 output=c.run("python3 test.py")
 
-
+"""
 with c.cd('../var/www'):
     #c.run('ls -la')
     
@@ -36,6 +36,7 @@ with c.cd('../var/www'):
     
     output=c.run("scrapy runspider file.py")
     
+"""
 
 #output=c.cd("../var/www")
 #
@@ -45,5 +46,30 @@ with c.cd('../var/www'):
 #.split("\n")
 a=output.stdout.encode("utf-8") #\r?
 print(a)
+
+
+
+import os
+
+#Read file
+#with c.cd('../var/www'):
+#    c.run('ls -la')
+output=c.get("../var/www/file.py","./temp_files/file.py")
+os.system("C:/Programy/Notepad++/notepad++.exe ./temp_files/file.py")
+    #output=c.put("")
+print(output)
+    
+  
+#Send editted file back
+"""
+with c.cd('../var/www'):
+    c.run('ls -la')
+    
+    #os.system("C:\\Programy\\Notepad++\\notepad++.exe ./temp_files/file.py")
+    
+    output=c.put("./temp_files/file.py","../var/www/file.py")
+    #output=c.put("")
+    print(output)
+""" 
 
 
