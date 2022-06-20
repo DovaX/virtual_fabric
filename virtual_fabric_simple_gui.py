@@ -56,6 +56,16 @@ def new_cronjob():
 
 
 
+def git_clone():
+    repository=entry5.text.get()
+    vfs.git_clone(repository)
+
+def git_pull():
+    vfs.git_pull()
+
+
+
+
 label1=dg.Label(gui1.window,"Current directory: ~", 0, 1)
 
 
@@ -89,6 +99,12 @@ dg.Button(gui1.window, "Update crontab", update_crontab, 4, 2)
 
 dg.Button(gui1.window, "New cronjob", new_cronjob, 4, 3)
 
+
+
+dg.Label(gui1.window,"Git operations", 5, 1)
+entry5=dg.Entry(gui1.window, 5, 2, width=30,text_input="")
+dg.Button(gui1.window, "Git Clone", git_clone, 5, 3)
+dg.Button(gui1.window, "Git Pull", git_pull, 5, 4)
 
 
 

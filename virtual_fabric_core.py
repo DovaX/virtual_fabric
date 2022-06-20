@@ -67,14 +67,15 @@ class VirtualFabricServer:
         
 
         
-    def git_clone(self):
-        #TODO
-        pass
-    
+    def git_clone(self,repository):
+        """repository ... HTTPS repository url e.g. https://github.com/DovaX/virtual_fabric.git"""
+        command="git clone "+repository
+        self.connection.run(command)
+        
     def git_pull(self):
-        #TODO
-        pass
-    
+        command="git pull"
+        self.connection.run(command)
+        
     def scp_move(self):
         #TODO
         pass
