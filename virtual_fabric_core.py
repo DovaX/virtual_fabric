@@ -32,6 +32,7 @@ class VirtualFabricServer:
         with self.connection.cd(self.working_directory):        
             output=self.connection.run(command)
             print(output)
+            return(output)
             
             
     def read_file(self,file,directory=None):
