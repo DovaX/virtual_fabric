@@ -89,9 +89,9 @@ class VirtualFabricServer:
         #TODO
         pass
     
-    def run_python_script(self):
-        #TODO
-        pass
+    def run_python_script(self,script_filename):
+        output=self.run("python3 "+script_filename)
+        return(output)
     
     def move_file(self):
         #TODO
