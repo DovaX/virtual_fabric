@@ -1,7 +1,7 @@
 
 
 import dogui.dogui_core as dg
-from virtual_fabric_core import VirtualFabricServer
+from virtual_fabric.virtual_fabric_core import VirtualFabricServer
 
 
 vfs=VirtualFabricServer(SERVER,USER,PASS)
