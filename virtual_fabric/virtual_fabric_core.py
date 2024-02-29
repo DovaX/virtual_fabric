@@ -14,6 +14,7 @@ class VirtualFabricServer:
         self.username=username
         self.password=password
         self.working_directory="~"
+        self.local_text_editor="notepad"
         
     def connect(self):
         self.connection=fabric.Connection(self.server, port=22, user=self.username, connect_kwargs={'password': self.password})
@@ -27,6 +28,11 @@ class VirtualFabricServer:
 
     def change_directory(self,directory):
         self.working_directory=directory
+        
+    def make_directory(self,directory):
+        output=self.connection.run("mkdir -p "+directory)
+        print(output)
+
             
     def run(self,command):        
         with self.connection.cd(self.working_directory):        
@@ -40,8 +46,8 @@ class VirtualFabricServer:
             self.working_directory=directory
         
         #Read file
-        output=self.connection.get(directory+"/"+file,"./temp_files/"+file)
-        os.system("C:/Programy/Notepad++/notepad++.exe ./temp_files/"+file)
+        output=self.connection.get(self.working_directory+"/"+file,"./temp_files/"+file)
+        os.system(self.local_text_editor+" ./temp_files/"+file)
         #output=c.put("")
         print(output)
         
@@ -51,9 +57,8 @@ class VirtualFabricServer:
             self.working_directory=directory
         
         #Read file
-        output=self.connection.put("./temp_files/"+file,directory+"/"+file)
-        #os.system("C:/Programy/Notepad++/notepad++.exe ./temp_files/"+file)
-        #output=c.put("")
+        os.system(self.local_text_editor+" ./temp_files/"+file)
+        output=self.connection.put("./temp_files/"+file,self.working_directory+"/"+file)
         print(output)
         
     def read_crontab(self):
