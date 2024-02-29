@@ -28,6 +28,12 @@ def cd():
     label1.text.set("Current directory: "+str(vfs.working_directory))
 
 
+def mkdir():
+    
+    directory=entry1.text.get()
+    vfs.make_directory(directory)
+
+
 def run():
     command=entry2.text.get()+" "+entry3.text.get()
     vfs.run(command)
@@ -77,6 +83,7 @@ dg.Button(gui1.window, "Submit", cd, 1, 3)
 
 dg.Button(gui1.window, "ls", run_ls, 1, 4)
 
+dg.Button(gui1.window, "Make directory", mkdir, 1, 5)
 
 
 dg.Label(gui1.window,"Run script", 2, 1)
